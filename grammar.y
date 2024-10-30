@@ -3,39 +3,41 @@
 %skeleton "lalr1.cc"
 %defines
 %define api.value.type variant
-%param {yy::NumDriver* driver}
+%param {
+  yy::NumDriver* driver
+}
 
 %code requires
 {
-#include <iostream>
-#include <string>
-#include <utility>
+  #include <iostream>
+  #include <string>
+  #include <utility>
 
-// forward decl of argument to parser
-namespace yy { class NumDriver; }
+  // forward decl of argument to parser
+  namespace yy { 
+    class NumDriver; 
+  }
 }
 
 %code
 {
-#include "numdriver.hpp"
-
-namespace yy {
-
-parser::token_type yylex(parser::semantic_type* yylval,                         
-                         NumDriver* driver);
-}
+  #include "numdriver.hpp"
+  namespace yy {
+    parser::token_type yylex(parser::semantic_type* yylval, NumDriver* driver);
+  }
 }
 
 %token
-  EQUAL   "="
+  ASSIGN   "="
+  SEMICOL  ";"
+  INPUT    "?"
   MINUS   "-"
   PLUS    "+"
-  SCOLON  ";"
   ERR
 ;
 
 %token <int> NUMBER
-%nterm <int> equals
+%token <int> ID
 %nterm <int> expr
 
 %left '+' '-'
@@ -44,19 +46,20 @@ parser::token_type yylex(parser::semantic_type* yylval,
 
 %%
 
-program: eqlist
+program: stmt_list
 ;
 
-eqlist: equals SCOLON eqlist
+stmt_list: stmt SEMICOL {std::cout << std::endl; } stmt_list 
       | %empty
 ;
 
-equals: expr EQUAL expr       { 
-                                $$ = ($1 == $3); 
-                                std::cout << "Checking: " << $1 << " vs " << $3 
-                                          << "; Result: " << $$
-                                          << std::endl; 
-                              }
+stmt: assign_stmt   { }
+    | eq_stmt       { }
+;
+
+assign_stmt: ID ASSIGN INPUT       { }
+
+eq_stmt: expr       { }
 ;
 
 expr: expr PLUS NUMBER        { $$ = $1 + $3; }

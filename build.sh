@@ -1,8 +1,10 @@
-mkdir build
-cd build
+mkdir build; cd build
 
 cmake -DCMAKE_BUILD_TYPE=Release -DGRAMMAR="grammar.y" ..
 
-make VERBOSE=1
+make
+#make VERBOSE=1
+
+cp ./pcl ..
 
 

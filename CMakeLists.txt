@@ -1,7 +1,5 @@
-#  cmake -DCMAKE_BUILD_TYPE=Release -DGRAMMAR="grammar.y" ..
-
 cmake_minimum_required(VERSION 3.15)
-project(paracl)
+project(pcl)
 
 find_package(BISON REQUIRED)
 find_package(FLEX REQUIRED)
@@ -23,7 +21,7 @@ bison_target(parser
 add_flex_bison_dependency(scanner parser)
 
 add_executable(${PROJECT_NAME} 
-  driver.cc  
+  driver.cpp  
   ${BISON_parser_OUTPUTS}
   ${FLEX_scanner_OUTPUTS}
 )
