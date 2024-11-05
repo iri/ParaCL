@@ -28,7 +28,7 @@ ALP         [a-zA-Z_]
 "%"                     {return yy::parser::token_type::MOD;}
 
 "=="                    {return yy::parser::token_type::EQ;}
-"!="                    {return yy::parser::token_type::NOT_EQ;}
+"!="                    {return yy::parser::token_type::NEQ;}
 ">"                     {return yy::parser::token_type::GT;}
 "<"                     {return yy::parser::token_type::LT;}
 ">="                    {return yy::parser::token_type::GE;}
@@ -44,7 +44,6 @@ ALP         [a-zA-Z_]
 ")"                     {return yy::parser::token_type::CLOSE_PT;}
 "{"                     {return yy::parser::token_type::OPEN_BR;}
 "}"                     {return yy::parser::token_type::CLOSE_BR;}
-":"                     {return yy::parser::token_type::COLON;}
 
 "?"                     {return yy::parser::token_type::INPUT;}
 "="                     {return yy::parser::token_type::ASSIGN;}
@@ -52,7 +51,7 @@ ALP         [a-zA-Z_]
 "if"                    {return yy::parser::token_type::IF;}
 "else"                  {return yy::parser::token_type::ELSE;}
 "while"                 {return yy::parser::token_type::WHILE;}
-"func"                  {return yy::parser::token_type::FUNC;}
+"fun"                   {return yy::parser::token_type::FUN;}
 "return"                {return yy::parser::token_type::RETURN;}
 "self"                  {return yy::parser::token_type::SELF;}
 
