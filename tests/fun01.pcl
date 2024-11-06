@@ -1,0 +1,7 @@
+
+sum = fun(a, b) {
+    return(a+b);
+}
+
+print( sum(3,2) );
+

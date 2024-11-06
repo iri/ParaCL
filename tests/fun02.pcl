@@ -1,0 +1,9 @@
+
+a = 100;
+
+sum = fun(a, b) {
+    return(a+b);
+}
+
+print(a);
+

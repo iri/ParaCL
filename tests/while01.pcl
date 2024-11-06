@@ -1,0 +1,11 @@
+
+imax = 5;
+i = 1;
+sum = 0;
+
+while (i<=imax) {
+    sum = sum + i;
+    i = i + 1;
+}
+
+print(sum);
